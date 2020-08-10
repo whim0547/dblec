@@ -11,7 +11,24 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@item) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :is_borrow %>
+      <%= f.check_box :is_borrow %>
+
+      <%= f.label :user_id %>
+      <%= f.collection_select :user_id, current_user.group.users.order(name: :asc), :id, :name, {selected: current_user}  %>
+
+      <%= f.label :note %>
+      <%= f.text_area :note, class: 'form-control' %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <% end %>
   </div>
+</div>
 <% end %>

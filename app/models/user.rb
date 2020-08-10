@@ -1,10 +1,11 @@
 class User < ApplicationRecord
   validates :name, presence: true
 
+  belongs_to :group
   has_many :items
   has_secure_password #password_digestにpasswordを保存
-  validates :password, presence: true
-  
+  validates :password, presence: true, allow_nil: true
+
   # 渡された文字列のハッシュ値を返す
     def User.digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

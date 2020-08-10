@@ -1,0 +1,9 @@
+<li id="item-<%= item.id %>">
+  <span class="item"><%= link_to item.name, item %></span>
+  <span class="timestamp">
+    (Last Borrow: <%= item.updated_at %>)
+  </span>
+  <br>
+  <%= link_to 'Borrow', borrow_item_item_path(item.id), method: :post, data: { confirm: 'Borrow this?' } %> |
+  <%= link_to 'Return', return_item_item_path(item.id), method: :post, data: { confirm: 'Return this?' } %>
+</li>

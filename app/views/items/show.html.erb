@@ -1,4 +1,40 @@
 <p id="notice"><%= notice %></p>
 
+<% provide(:title, @item.name) %>
+
+<p>
+<strong>Name:</strong>
+<%= @item.name %>
+</p>
+
+<p>
+<strong>IsBorrow:</strong>
+<%= @item.is_borrow %>
+</p>
+
+<p>
+<strong><%= @item.is_borrow ? "Borrower" : "Last Borrower" %>:</strong>
+<%= @item.user.name %>
+</p>
+
+<p>
+<strong>Create at:</strong>
+<%= @item.created_at %>
+</p>
+
+
+<p>
+<strong>Update at:</strong>
+<%= @item.updated_at %>
+</p>
+
+
+<p>
+<strong>Note:</strong>
+<%= @item.note %>
+</p>
+
+<%= link_to 'Borrow', borrow_item_item_path(@item.id), method: :post, data: { confirm: 'Borrow this?' } %> |
+<%= link_to 'Return', return_item_item_path(@item.id), method: :post, data: { confirm: 'Return this?' } %> |
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

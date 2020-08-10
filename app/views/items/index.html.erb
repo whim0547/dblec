@@ -2,23 +2,41 @@
 
 <h1>Items</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= will_paginate %>
 
-  <tbody>
-    <% @items.each do |item| %>
+<ul class="users">
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>BorrowUser</th>
+        <th>Note</th>
+        <th>Last Update</th>
+        <th colspan="5"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.is_borrow ? item.user.name : "" %></td>
+          <td><%= truncate(item.note, length: 50) %></td>
+          <td><%= item.updated_at %></td>
+          <td><%= link_to 'Borrow', borrow_item_item_path(item.id), method: :post, data: { confirm: 'Borrow this?' } %></td>
+          <td><%= link_to 'Return', return_item_item_path(item.id), method: :post, data: { confirm: 'Return this?' } %></td>
+          <td><%= link_to 'Show', item %></td>
+          <td><%= link_to 'Edit', edit_item_path(item) %></td>
+          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</ul>
+
+
+
+<%= will_paginate %>
 
 <br>
 

@@ -1,4 +1,8 @@
-<h1>Editing User</h1>
+<% provide(:title, "Edit user") %>
+<% provide(:button_text, 'Save changes') %>
+<% provide(:is_new, false) %>
+
+<h1>Update your profile</h1>
 
 <%= render 'form', user: @user %>
 
